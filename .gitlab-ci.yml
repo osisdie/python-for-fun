@@ -1,0 +1,117 @@
+image: python:3.11-slim
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  APP_ENV: "Development"
+
+cache:
+  paths:
+    - .cache/pip
+    - .venv/
+
+workflow:
+  rules:
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
+stages:
+  - init
+  - validation
+  - test
+  - doc
+
+.initialize_script: &initialize_script
+  - |
+    export AWS_DEFAULT_REGION=us-west-2
+    python --version  # For debugging
+    pip install virtualenv
+    virtualenv .venv
+    source .venv/bin/activate
+
+.python_setup:
+  # tags: [dev-runner]
+  before_script:
+    - *initialize_script
+    - export PIPENV_VENV_IN_PROJECT=1
+
+.filter_tag_only:
+  rules:
+    - if: $CI_COMMIT_BRANCH
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: always
+
+.filter_branch_only:
+  rules:
+    - if: "$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH"
+      when: never
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: on_success
+
+.filter_branch_and_main_only:
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_BRANCH
+      when: on_success
+
+init_pipenv:
+  stage: init
+  extends: [.python_setup, .filter_branch_and_main_only]
+  artifacts:
+    paths: [.venv/]
+  script:
+    - pip install -r requirements.txt
+    # - pipenv install --dev --keep-outdated
+
+lint:
+  stage: validation
+  extends: [.python_setup, .filter_branch_and_main_only]
+  script:
+    - pipenv run pip install flake8 flake8-gl-codeclimate
+    - pipenv run lint_ci --exit-zero --output-file gl-code-quality-report.json
+  dependencies: [init_pipenv]
+  artifacts:
+    reports:
+      codequality: gl-code-quality-report.json
+
+test_python:
+  stage: test
+  extends: [.python_setup, .filter_branch_and_main_only]
+  script:
+    - pipenv run tests_ci
+    - pipenv run coverage
+    # - coverage report -m
+    # - coverage xml
+  coverage: '/TOTAL.+?(\d+%)/'
+  dependencies: [init_pipenv]
+  artifacts:
+    reports:
+      junit: "results.xml"
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+
+test_performance:
+  stage: test
+  extends: [.python_setup, .filter_branch_and_main_only]
+  script:
+    - pytest -q tests/unit/test_fabi_benchmark.py --benchmark-histogram --junitxml="results/benchmark.xml"
+  dependencies: [init_pipenv]
+  artifacts:
+    reports:
+      junit: "results/benchmark.xml"
+
+pages:
+  stage: doc
+  script:
+    - pip install sphinx sphinx-rtd-theme
+    - sphinx-build -b html . public
+  dependencies: [init_pipenv]
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

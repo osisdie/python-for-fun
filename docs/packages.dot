@@ -1,0 +1,37 @@
+digraph "packages" {
+rankdir=BT
+charset="utf-8"
+"src" [color="black", label="src", shape="box", style="solid"];
+"src.exam" [color="black", label="src.exam", shape="box", style="solid"];
+"src.exam.athena" [color="black", label="src.exam.athena", shape="box", style="solid"];
+"src.exam.athena.entity" [color="black", label="src.exam.athena.entity", shape="box", style="solid"];
+"src.exam.athena.entity.Employee" [color="black", label="src.exam.athena.entity.Employee", shape="box", style="solid"];
+"src.exam.athena.entity.EmployeeError" [color="black", label="src.exam.athena.entity.EmployeeError", shape="box", style="solid"];
+"src.exam.athena.entity.EmployeeFactory" [color="black", label="src.exam.athena.entity.EmployeeFactory", shape="box", style="solid"];
+"src.exam.athena.service" [color="black", label="src.exam.athena.service", shape="box", style="solid"];
+"src.exam.athena.util" [color="black", label="src.exam.athena.util", shape="box", style="solid"];
+"src.exam.athena.util.FileUtil" [color="black", label="src.exam.athena.util.FileUtil", shape="box", style="solid"];
+"src.exam.palindrome" [color="black", label="src.exam.palindrome", shape="box", style="solid"];
+"src.exam.palindrome.utils" [color="black", label="src.exam.palindrome.utils", shape="box", style="solid"];
+"src.exam.vowel" [color="black", label="src.exam.vowel", shape="box", style="solid"];
+"src.exam.vowel.utils" [color="black", label="src.exam.vowel.utils", shape="box", style="solid"];
+"src.main" [color="black", label="src.main", shape="box", style="solid"];
+"src.payroll" [color="black", label="src.payroll", shape="box", style="solid"];
+"src.payroll.contracts" [color="black", label="src.payroll.contracts", shape="box", style="solid"];
+"src.payroll.contracts.reporting" [color="black", label="src.payroll.contracts.reporting", shape="box", style="solid"];
+"src.payroll.contracts.reporting.EmpWageRecord" [color="black", label="src.payroll.contracts.reporting.EmpWageRecord", shape="box", style="solid"];
+"src.payroll.contracts.reporting.EmpWageRequestDto" [color="black", label="src.payroll.contracts.reporting.EmpWageRequestDto", shape="box", style="solid"];
+"src.payroll.contracts.reporting.EmpWageResponseDto" [color="black", label="src.payroll.contracts.reporting.EmpWageResponseDto", shape="box", style="solid"];
+"src.payroll.contracts.reporting.WageProcessByDivisionDto" [color="black", label="src.payroll.contracts.reporting.WageProcessByDivisionDto", shape="box", style="solid"];
+"src.payroll.services" [color="black", label="src.payroll.services", shape="box", style="solid"];
+"src.payroll.services.WageReportDemoProcess" [color="black", label="src.payroll.services.WageReportDemoProcess", shape="box", style="solid"];
+"src.payroll.services.WageReportProcess" [color="black", label="src.payroll.services.WageReportProcess", shape="box", style="solid"];
+"src.settings" [color="black", label="src.settings", shape="box", style="solid"];
+"src.settings.config" [color="black", label="src.settings.config", shape="box", style="solid"];
+"src.main" -> "src.exam.athena.service" [arrowhead="open", arrowtail="none"];
+"src.main" -> "src.payroll.contracts.reporting.EmpWageRequestDto" [arrowhead="open", arrowtail="none"];
+"src.main" -> "src.payroll.contracts.reporting.EmpWageResponseDto" [arrowhead="open", arrowtail="none"];
+"src.main" -> "src.payroll.services.WageReportDemoProcess" [arrowhead="open", arrowtail="none"];
+"src.main" -> "src.settings" [arrowhead="open", arrowtail="none"];
+"src.settings" -> "src.settings.config" [arrowhead="open", arrowtail="none"];
+}

@@ -1,0 +1,32 @@
+digraph "classes" {
+rankdir=BT
+charset="utf-8"
+"src.settings.config.Common" [color="black", fontcolor="black", label="{Common|DATA_PATH : str\lDEBUG : bool\lINCLUDE_DIV_MGR_SALARY_ENABLED : bool\lINCLUDE_TOP_MGR_SALARY_ENABLED : bool\lMIN_LEN_USERNAME : int\lSDK_ENV : str\l|}", shape="record", style="solid"];
+"src.settings.config.Development" [color="black", fontcolor="black", label="{Development|DATA_PATH : str\lDEBUG : bool\lSDK_ENV : str\l|}", shape="record", style="solid"];
+"src.payroll.contracts.reporting.EmpWageRecord.EmpWageRecord" [color="black", fontcolor="black", label="{EmpWageRecord|depth : int\lindent : str\lmanager_record : Optional[__name__]\lsalary : int\l|is_self_mgr(rec): bool\lto_list_of_obj(list_of_dict): List[__name__]\l}", shape="record", style="solid"];
+"src.payroll.contracts.reporting.EmpWageRequestDto.EmpWageRequestDto" [color="black", fontcolor="black", label="{EmpWageRequestDto|filepath : Optional[str]\llist_of_dict : Optional[List[EmpWageRecord]]\ltitle : str\l|}", shape="record", style="solid"];
+"src.payroll.contracts.reporting.EmpWageResponseDto.EmpWageResponseDto" [color="black", fontcolor="black", label="{EmpWageResponseDto|body : str\ldivisions : List[WageProcessByDivisionDto]\ltitle : str\ltop_managers : List[EmpWageRecord]\ltotal_salary : int\l|}", shape="record", style="solid"];
+"src.exam.athena.entity.Employee.Employee" [color="black", fontcolor="black", label="{Employee|level : int\l|}", shape="record", style="solid"];
+"src.exam.athena.entity.Employee.EmployeeBase" [color="black", fontcolor="black", label="{EmployeeBase|employee_id : int\lfirst_name : str\lmanager : Optional[int]\lsalary : int\l|first_name_must_be_alphabet(cls, v)\l}", shape="record", style="solid"];
+"src.exam.athena.entity.EmployeeError.EmployeeError" [color="black", fontcolor="red", label="{EmployeeError|\l|}", shape="record", style="solid"];
+"src.exam.athena.entity.EmployeeFactory.EmployeeFactory" [color="black", fontcolor="black", label="{EmployeeFactory|\l|create(employee: List[int], manager_ids): Union[Employee, Manager]\l}", shape="record", style="solid"];
+"src.exam.athena.entity.EmployeeError.EmployeeIOError" [color="black", fontcolor="red", label="{EmployeeIOError|\l|}", shape="record", style="solid"];
+"src.exam.athena.service.EmployeeService" [color="black", fontcolor="black", label="{EmployeeService|hierarchy_dict : Dict[int, int]\llookup_employee_dict : Dict[int, EmployeeBase]\l|execute(json_path: str): \lget_toggle(key): bool\lget_total_salary(employees: Dict[int, EmployeeBase]): int\lprint_hierarchy(): \lprint_hierarchy_recursive(): \lset_employee_hierarchy(employees: List[Dict]): \lset_employee_level(employee_id: int, employee_level: int): int\lset_employee_level_cached(employee_id: int, employee_level: int): int\l}", shape="record", style="solid"];
+"src.exam.athena.entity.EmployeeError.EmployeeTypeError" [color="black", fontcolor="red", label="{EmployeeTypeError|\l|}", shape="record", style="solid"];
+"src.exam.athena.util.FileUtil.FileUtil" [color="black", fontcolor="black", label="{FileUtil|\l|load_employee_from_xml()\lload_employees_from_json(json_path): List[Dict]\l}", shape="record", style="solid"];
+"src.settings.config.Local" [color="black", fontcolor="black", label="{Local|DATA_PATH : str\lDEBUG : bool\lSDK_ENV : str\l|}", shape="record", style="solid"];
+"src.exam.athena.entity.Employee.Manager" [color="black", fontcolor="black", label="{Manager|team_members : List[EmployeeBase]\l|}", shape="record", style="solid"];
+"src.settings.config.Production" [color="black", fontcolor="black", label="{Production|DATA_PATH : str\lDEBUG : bool\lSDK_ENV : str\l|}", shape="record", style="solid"];
+"src.settings.config.Staging" [color="black", fontcolor="black", label="{Staging|DATA_PATH : str\lDEBUG : bool\l|}", shape="record", style="solid"];
+"src.settings.config.Testing" [color="black", fontcolor="black", label="{Testing|DATA_PATH : str\lDEBUG : bool\lSDK_ENV : str\l|}", shape="record", style="solid"];
+"src.payroll.contracts.reporting.WageProcessByDivisionDto.WageProcessByDivisionDto" [color="black", fontcolor="black", label="{WageProcessByDivisionDto|emp_id : int\lemployees : List[EmpWageRecord]\lmanager : Optional[EmpWageRecord]\lsalary : int\l|}", shape="record", style="solid"];
+"src.payroll.services.WageReportDemoProcess.WageReportDemoProcess" [color="black", fontcolor="black", label="{WageReportDemoProcess|\l|}", shape="record", style="solid"];
+"src.payroll.services.WageReportProcess.WageReportProcess" [color="black", fontcolor="black", label="{WageReportProcess|dataset\llogger\lrequest_dto\lresponse_dto\l|execute(): EmpWageResponseDto\l}", shape="record", style="solid"];
+"src.exam.athena.entity.Employee.Employee" -> "src.exam.athena.entity.Employee.EmployeeBase" [arrowhead="empty", arrowtail="none"];
+"src.exam.athena.entity.Employee.Manager" -> "src.exam.athena.entity.Employee.Employee" [arrowhead="empty", arrowtail="none"];
+"src.settings.config.Development" -> "src.settings.config.Common" [arrowhead="empty", arrowtail="none"];
+"src.settings.config.Local" -> "src.settings.config.Common" [arrowhead="empty", arrowtail="none"];
+"src.settings.config.Production" -> "src.settings.config.Common" [arrowhead="empty", arrowtail="none"];
+"src.settings.config.Staging" -> "src.settings.config.Production" [arrowhead="empty", arrowtail="none"];
+"src.settings.config.Testing" -> "src.settings.config.Development" [arrowhead="empty", arrowtail="none"];
+}

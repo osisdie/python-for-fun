@@ -1,0 +1,19 @@
+[run]
+branch = True
+omit =
+    # build and test directories
+    */build/*
+    */tests/*
+    */exam/*
+    */config.py
+    */main.py
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self\.debug
+    raise AssertionError
+    raise NotImplementedError
+    if 0:
+    if __name__ == .__main__.:

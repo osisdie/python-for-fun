@@ -1,0 +1,22 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.languageServer": "Pylance",
+    // "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.analysis.extraPaths": [
+        "./app_package"
+    ],
+    "python.linting.pylintArgs": [
+        "--disable=C0103,C0114,C0115,C0116,C0301,C0321,C0411,E1131,E0213,E0401,E0602,E0611,E1136,R0201,R0903,W0221,W0237,W0613,W0621,W0622,W1510"
+        ,"--extension-pkg-whitelist='pydantic'"
+        ,"--ignore=index.rst"
+    ],
+    "python.testing.pytestArgs": [
+        "tests",
+        "--no-cov"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "pythonTestExplorer.testFramework": "pytest",
+    "pythonTestExplorer.testplanEnabled": false
+}

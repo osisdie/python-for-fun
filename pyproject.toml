@@ -1,0 +1,102 @@
+[tool.poetry]
+name = "app_package"
+version = "0.1.0"
+description = ""
+authors = ["kevin.wu <admin@kevinw.net>"]
+
+[tool.isort]
+line_length = 120
+
+[tool.pytest.ini_options]
+filterwarnings = "ignore::DeprecationWarning"
+addopts = "--cov=./app_package"
+log_cli = true
+log_format = "%(message)s"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+
+[tool.coverage.run]
+branch = true
+omit = ["*/build/*", "tests/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "raise NotImplementedError.*"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aspectlib = "^1.5.2"
+astroid = "^2.11.4"
+attrs = "^21.4.0"
+CD = "^1.1.0"
+certifi = "^2021.10.8"
+cfgv = "^3.3.1"
+distlib = "^0.3.4"
+fields = "^5.0.0"
+filelock = "^3.6.0"
+identify = "^2.5.0"
+importlib-metadata = "^4.11.3"
+importlib-resources = "^5.7.1"
+iniconfig = "^1.1.1"
+Jinja2 = "^3.1.2"
+lazy-object-proxy = "^1.7.1"
+MarkupSafe = "^2.1.1"
+nodeenv = "^1.6.0"
+packaging = "^21.3"
+platformdirs = "^2.5.2"
+pluggy = "^1.0.0"
+py = "^1.11.0"
+py-cpuinfo = "^8.0.0"
+pydantic = "^1.9.0"
+pygal = "^3.0.0"
+pygaljs = "^1.0.2"
+pyparsing = "^3.0.8"
+python-dotenv = "^0.20.0"
+PyYAML = "^6.0"
+six = "^1.16.0"
+toml = "^0.10.2"
+tomli = "^2.0.1"
+typing-extensions = "^4.2.0"
+wrapt = "^1.14.1"
+zipp = "^3.8.0"
+autopep8 = "^1.6.0"
+coverage = "^6.3.2"
+debugpy = "^1.6.0"
+flake8 = "^4.0.1"
+flake8-gl-codeclimate = "^0.1.6"
+mypy = "^0.950"
+mypy-extensions = "^0.4.3"
+pipenv = "^2022.5.2"
+pycodestyle = "^2.8.0"
+pyflakes = "^2.4.0"
+pytest = "^7.1.2"
+pytest-benchmark = "^3.4.1"
+pytest-cov = "^3.0.0"
+pylint = "^2.13.8"
+pytest-dotenv = "^0.5.2"
+pytest-lazy-fixture = "^0.6.3"
+pytest-mock = "^3.7.0"
+virtualenv = "^20.14.1"
+virtualenv-clone = "^0.5.7"
+
+[tool.poetry.dev-dependencies]
+isort = "^5.10.1"
+graphviz = "^0.20"
+pre-commit = "^2.19.0"
+pyan3 = "^1.2.0"
+pytest-vscodedebug = "^0.1.0"
+pyment = "^0.3.3"
+
+[tool.setuptools_scm]
+
+[tool.poetry.scripts]
+main = "scripts:main"
+json1 = "scripts:json1"
+json5 = "scripts:json5"
+err_nodata = "scripts:err_nodata"
+err_bad_src = "scripts:err_bad_src"
+err_bad_model = "scripts:err_bad_model"
+err_topmgr = "scripts:err_topmgr"
+err_infinite = "scripts:err_infinite"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,35 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+    -   id: end-of-file-fixer
+    -   id: double-quote-string-fixer
+    -   id: trailing-whitespace
+    -   id: check-merge-conflict
+    -   id: check-yaml
+    -   id: debug-statements
+        files: (^app_package/|^tests/)
+        exclude: .coveragerc
+    -   id: mixed-line-ending
+        args: [--fix=lf]
+        exclude: '\.bat$'
+    -   id: mixed-line-ending
+        args: [--fix=crlf]
+        files: '\.bat$'
+-   repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.2.3
+    hooks:
+    -   id: add-trailing-comma
+        args: [--py36-plus]
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.6.0
+    hooks:
+    -   id: autopep8
+-   repo: https://github.com/PyCQA/flake8
+    rev: 4.0.1
+    hooks:
+    -   id: flake8
+-   repo: https://github.com/pycqa/isort
+    rev: 5.9.3
+    hooks:
+    -   id: isort

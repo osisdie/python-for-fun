@@ -1,0 +1,70 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: current file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "VIRTUAL_ENV": ".venv",
+                "PYTHONPATH": ".",
+                "APP_ENV": "Development"
+            }
+        },
+        {
+            "name": "Python: main file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/app_package/main.py",
+            "console": "integratedTerminal",
+            "args": [
+                // "--file", "res/employees1.json"
+                // "--file", "res/employees5.json"
+                // "--file", "res/err_bad_model.json"
+                // "--file", "res/err_inifinite_report_line.json"
+            ],
+            "env": {
+                "VIRTUAL_ENV": ".venv",
+                "PYTHONPATH": ".",
+                "APP_ENV": "Development"
+            }
+        },
+        {
+            "name": "Python: debug tests",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "purpose": [
+                "debug-test"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "VIRTUAL_ENV": ".venv",
+                "PYTHONPATH": ".",
+                "APP_ENV": "Development"
+            }
+        },
+        {
+            "name": "Python: remote attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 10001,
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ],
+            "logToFile": true
+        }
+    ]
+}

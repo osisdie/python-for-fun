@@ -1,0 +1,56 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[requires]
+python_version = "3.11"
+
+[dev-packages]
+coverage = "*"
+pytest = "<8.0.0"
+pytest-cov = "*"
+pytest-mock = "*"
+pytest-lazy-fixture = "*"
+pytest-benchmark = "*"
+pytest-vscodedebug = "*"
+pydantic = "*"
+pylint = "*"
+mypy = "*"
+mypy-extensions = "*"
+flake8 = "*"
+flake8-gl-codeclimate = "*"
+autopep8 = "*"
+pre-commit = "*"
+isort = "*"
+
+[packages]
+astroid = "*"
+attrs = "*"
+debugpy = "*"
+importlib-resources = "*"
+iniconfig = "*"
+lazy-object-proxy = "*"
+mccabe = "*"
+platformdirs = "*"
+pluggy = "*"
+py = "*"
+py-cpuinfo = "*"
+pyparsing = "*"
+toml = "*"
+tomli = "*"
+typing-extensions = "*"
+wrapt = "*"
+zipp = "*"
+CD = "*"
+
+[scripts]
+tests = "python -m pytest tests/ -v"
+tests_ci = "python -m pytest tests/ -v --junit-xml=results.xml"
+tests_nocov = "python -m pytest tests/ -v --no-cov"
+tests_missing = "python -m pytest tests/ -v --cov-report term-missing"
+coverage = "coverage xml"
+lint = "flake8 --statistics --count"
+lint_ci = "flake8 --format gl-codeclimate"
+format = "autopep8 --recursive ."
+start = "python app_package/main.py"
